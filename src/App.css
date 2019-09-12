@@ -1,0 +1,25 @@
+li {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px
+}
+li button {
+  visibility: hidden;
+}
+li:hover button {
+  visibility: visible;
+}
+.myList {
+  display: flex;
+}
+img {
+  height: 300px;
+  width: auto;
+}
+h1 {
+  color: white
+}
+h2 {
+  color: white
+}
