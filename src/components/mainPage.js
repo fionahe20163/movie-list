@@ -12,24 +12,25 @@ class MainPages extends React.Component {
    }
 
   render(){
+    const {myLists, removeItem, recommendation, addItem} = this.props
     return(
-      <div>
+      <React.Fragment>
         <img src={logo} alt='logo' style={{height:'100px'}}/>
         <ListTemplate
-        listTitle="My List"
-        renderList={this.props.myLists}
-        handleFunction={this.props.removeItem}/>
+        listTitle="My List(s)"
+        renderList={myLists}
+        handleFunction={removeItem}/>
         <ListTemplate
-        listTitle="Recommendations"
-        renderList={this.props.recommendation}
-        handleFunction={this.props.addItem}/>
-        <h2>My list title</h2>
+        listTitle="Recommendation List(s)"
+        renderList={recommendation}
+        handleFunction={addItem}/>
+        <h2>My list's title</h2>
         <ul style={{color:'white'}}>
-        {this.props.myLists.map(item => (
+        {myLists.map(item => (
           <li key={item.id}>{item.title}</li>
         ))}
         </ul>
-      </div>
+      </React.Fragment>
     );
   }
 }

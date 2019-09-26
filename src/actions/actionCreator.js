@@ -8,12 +8,12 @@ export const fetchData = data => ({
 export const getRenderLists = () => {
   return dispatch => {
     axios.get('moviedata.json')
-    .then(response => {
+    .then(response =>{
       const data = response.data
       dispatch(fetchData(data))
     })
     .catch(() => {
-          alert('there is an error when fetching the data!!!!');
+          alert('there is an error when fetching the data!!');
     });
   }
 };

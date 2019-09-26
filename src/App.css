@@ -2,7 +2,7 @@ li {
     list-style: none;
     display: flex;
     flex-direction: column;
-    margin-right: 10px
+    margin-right: 10px;
 }
 li button {
   visibility: hidden;
@@ -18,8 +18,8 @@ img {
   width: auto;
 }
 h1 {
-  color: white
+  color: white;
 }
 h2 {
-  color: white
+  color: white;
 }

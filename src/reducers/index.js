@@ -6,8 +6,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 switch (action.type) {
   case 'FETCH_DATA':
-  console.log(action)
-    return {
+      return {
       ...state,
       myLists: action.data.mylist,
       recommendation: action.data.recommendations
