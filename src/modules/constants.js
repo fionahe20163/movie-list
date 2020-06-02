@@ -1,0 +1,5 @@
+export const ACTIONS = {
+  ADD_ITEM: "ADD_ITEM",
+  FETCH_DATA: "FETCH_DATA",
+  REMOVE_ITEM: "REMOVE_ITEM",
+};

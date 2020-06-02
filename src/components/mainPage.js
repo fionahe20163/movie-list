@@ -1,52 +1,57 @@
-import React from 'react';
-import logo from '../data/logo.png';
-import { getRenderLists } from '../actions/actionCreator.js';
-import store from '../index'
-import { connect } from 'react-redux'
-import ListTemplate from './listTemplate'
+import React from "react";
+import store from "../index";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import "../App.css";
+import logo from "../data/logo.png";
+
+import ListTemplate from "./listTemplate";
+import { actions, getRenderLists } from "../modules/index";
+import selectors from "../modules/selectors";
 
 class MainPages extends React.Component {
-
   componentDidMount() {
     store.dispatch(getRenderLists());
-   }
+  }
 
-  render(){
-    const {myLists, removeItem, recommendation, addItem} = this.props
-    return(
+  render() {
+    console.log(this.props);
+    const { myLists, recommendation, actions } = this.props;
+    const { removeItem, addItem } = actions;
+    return (
       <React.Fragment>
-        <img src={logo} alt='logo' style={{height:'100px'}}/>
+        <img src={logo} alt="logo" className="logo" />
         <ListTemplate
-        listTitle="My List(s)"
-        renderList={myLists}
-        handleFunction={removeItem}/>
+          listTitle="My List(s)"
+          renderList={myLists}
+          handleFunction={removeItem}
+        />
         <ListTemplate
-        listTitle="Recommendation List(s)"
-        renderList={recommendation}
-        handleFunction={addItem}/>
+          listTitle="Recommendation List(s)"
+          renderList={recommendation}
+          handleFunction={addItem}
+        />
         <h2>My list's title</h2>
-        <ul style={{color:'white'}}>
-        {myLists.map(item => (
-          <li key={item.id}>{item.title}</li>
-        ))}
+        <ul>
+          {myLists.map((item) => (
+            <li key={item.id}>{item.title}</li>
+          ))}
         </ul>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    myLists: state.myLists,
-    recommendation: state.recommendation
+    myLists: selectors.getMyList(state),
+    recommendation: selectors.getRecommendation(state),
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    removeItem: item => dispatch({ type: 'REMOVE_ITEM', item }),
-    addItem: item => dispatch ({type:'ADD_ITEM', item })
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ ...actions }, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPages);
